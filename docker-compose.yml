@@ -12,16 +12,14 @@ services:
     depends_on:
       - db
 
-  phpmyadmin:
-    container_name: phpmyadmin
+ phpmyadmin:
     image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
     environment:
       PMA_HOST: db
-      PMA_USER: root
-      PMA_PASSWORD: M@el3692
-      PMA_ALLOW_NO_PASSWORD: "false"
-    ports:
-      - "8080:80"
+      MYSQL_ROOT_PASSWORD: M@el3692
     depends_on:
       - db
 
