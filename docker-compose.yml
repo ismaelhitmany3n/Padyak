@@ -13,8 +13,21 @@ services:
     container_name: phpmyadmin
     image: phpmyadmin/phpmyadmin
     environment:
-      PMA_HOST: 172.18.0.2 # Use the name of the Nginx container as the database host
-      PMA_USER: root # coduiscript@138
+      PMA_HOST: server
+      PMA_USER: root
       PMA_PASSWORD: M@el3692
     ports:
-      - "8080:80" # Map the PHPMyAdmin port to port 8080 on the host machine
+      - "8080:80"
+    depends_on:
+      - db
+  db:
+    container_name: db
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: mydatabase
+      MYSQL_ROOT_PASSWORD: M@el3692
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data:/var/lib/mysql
