@@ -5,29 +5,36 @@ services:
     container_name: html
     image: nginx:1.16.1
     volumes:
-    - ./:/usr/share/nginx/html
-    - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./:/usr/share/nginx/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     ports:
-    - 80:80
+      - 80:80
+    depends_on:
+      - db
+
   phpmyadmin:
     container_name: phpmyadmin
     image: phpmyadmin/phpmyadmin
     environment:
-      PMA_HOST: server
+      PMA_HOST: db
       PMA_USER: root
       PMA_PASSWORD: M@el3692
     ports:
       - "8080:80"
     depends_on:
       - db
+
   db:
     container_name: db
-    image: mysql:5.7
+    image: mysql:5
     restart: always
     environment:
-      MYSQL_DATABASE: mydatabase
       MYSQL_ROOT_PASSWORD: M@el3692
-    ports:
-      - "3306:3306"
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: dbuser
+      MYSQL_PASSWORD: M@el3692
     volumes:
-      - ./data:/var/lib/mysql
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
