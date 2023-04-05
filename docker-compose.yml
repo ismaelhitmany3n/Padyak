@@ -12,7 +12,7 @@ services:
     depends_on:
       - db
 
- phpmyadmin:
+  phpmyadmin:
     image: phpmyadmin/phpmyadmin
     restart: always
     ports:
