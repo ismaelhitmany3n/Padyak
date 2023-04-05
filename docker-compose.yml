@@ -11,12 +11,6 @@ services:
       - 80:80
     depends_on:
       - db
-    # Deny all except localhost
-    networks:
-      default:
-        external:
-          name: my_network
-    # End of deny all
 
   phpmyadmin:
     container_name: phpmyadmin
@@ -29,7 +23,18 @@ services:
       - "8080:80"
     depends_on:
       - db
-    # Deny all except localhost
-    networks:
-      default:
-        external:
+
+  db:
+    container_name: db
+    image: mysql:5
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: M@el3692
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: dbuser
+      MYSQL_PASSWORD: M@el3692
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
