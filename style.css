@@ -25,6 +25,19 @@ html {
   }
 }
 
+@media (max-width: 1080px) {
+  body {
+    /*font-size: 14px;*/
+  }
+  .button-group button {
+    width: 100%;
+    margin: 5px 0;
+  }
+  .container {
+    width: 100%;
+  }
+}
+
 /* Use a media query to adjust styles for screens 1200 pixels wide or less */
 @media (max-width: 1200px) {
   .container {
