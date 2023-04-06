@@ -6,7 +6,7 @@ services:
     image: nginx:1.20.1
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.server.rule=Host(`example.com`)"
+      - "traefik.http.routers.server.rule=Host(`eservease.com`)"
       - "traefik.http.routers.server.entrypoints=websecure"
       - "traefik.http.routers.server.tls=true"
       - "traefik.http.services.server.loadbalancer.server.port=80"
