@@ -1,39 +1,38 @@
-version: "3"
+version: '3'
 
 services:
-  server:
-    container_name: html
-    image: nginx:1.20.1
+  db:
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: M@el3692
     volumes:
-      - ./:/usr/share/nginx/html
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - db_data:/var/lib/mysql
     ports:
-      - 80:80
-    depends_on:
-      - db
-
+      - "3306:3306"
+  
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     restart: always
-    ports:
-      - 8080:80
     environment:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: M@el3692
+    ports:
+      - "8080:80"
     depends_on:
       - db
 
-  db:
-    container_name: db
-    image: mysql:5.7
+  nginx:
+    image: nginx:latest
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: M@el3692
-      MYSQL_DATABASE: testdb
-      MYSQL_USER: dbuser
-      MYSQL_PASSWORD: M@el3692
+    ports:
+      - "80:80"
     volumes:
-      - db_data:/var/lib/mysql
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./site.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - phpmyadmin
 
 volumes:
   db_data:
