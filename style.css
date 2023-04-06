@@ -1,119 +1,97 @@
-/* Define the font size of the document to be 16 pixels */
-html {
-  font-size: 16px;
-}
-
-/* Use a media query to adjust styles for screens 600 pixels wide or less */
-@media (max-width: 600px) {
-  body {
-    font-size: 14px;
-  }
-  .button-group button {
-    width: 100%;
-    margin: 5px 0;
-  }
-  .container {
-    width: 100%;
-  }
-}
-
-/* Use a media query to adjust styles for screens 900 pixels wide or less */
-@media (max-width: 900px) {
-  .button-group button {
-    width: 30%;
-    margin: 5px;
-  }
-}
-
-@media (max-width: 1080px) {
-  body {
-    /*font-size: 14px;*/
-  }
-  .button-group button {
-    width: 80%;
-    margin: 5px 0;
-  }
-  .container {
-    width: 100%;
-  }
-}
-
-/* Use a media query to adjust styles for screens 1200 pixels wide or less */
-@media (max-width: 1200px) {
-  .container {
-    width: 80%;
-    margin: 0 auto;
-  }
-}
-
-/* Use a media query to adjust styles for screens 1400 pixels wide or less */
-@media (max-width: 1400px) {
-  .button-group button {
-    font-size: 18px;
-  }
-}
-
-body {
+body{
   background-color: #f28542;
   color: white;
-  font-family: sans-serif;
+  font-family:sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
-.button-group button.active {
-  background-color: #ff751a;
-  color: #fff;
-  border-radius: 7px;
+.container{
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: #999;
 }
 
-.button-group button {
-  background-color: #808080;
-  border: none;
-  border-radius: 7px;
-  padding: 1px;
-  margin: 5px 5px;
-  cursor: pointer;
-  width: 150px;
-  height: 60px;
-  display: inline-block;
-  float: center;
+.head{
   text-align: center;
-  font-size: 20px;
+  margin-bottom: 10px;
 }
 
-.button-group button:hover {
-  background-color: #262626;
-  color: white;
-  border-radius: 7px;
+.head h1{
+  font-size: 32px;
+  margin: 0;
+  padding: 0;
 }
 
-label {
-  font-size: 18px;
-}
-
-h1 {
-  text-align: center;
-}
-
-h2 {
-  text-align: center;
+.head h2{
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
   color: #1ac6ff;
 }
 
-hr {
-  border: 3px solid #1ac6ff;
-  border-radius: 4px;
+.button-group{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
-#cancel {
+.button-group button{
+  background-color: #808080;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  width: calc(33.33% - 10px);
+  text-align: center;
+  font-size: 18px;
+}
+
+.button-group button.active{
+  background-color: #ff751a;
+}
+
+.cancel{
   background-color: #ff3333;
 }
 
-#cancel:hover {
+.cancel:hover{
   background-color: red;
 }
 
-#request {
+.request{
   background-color: #5cd65c;
 }
 
-#request:hover
+.request:hover{
+  background-color: green;
+}
+
+.selected-label{
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.user-details{
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+@media screen and (max-width: 768px){
+  .button-group button{
+    width: calc(50% - 10px);
+  }
+}
+
+@media screen and (max-width: 480px){
+  .button-group{
+    flex-direction: column;
+  }
+
+  .button-group button{
+    width: 100%;
+  }
+}
