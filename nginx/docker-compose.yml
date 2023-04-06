@@ -21,7 +21,7 @@ services:
     image: containous/whoami
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.whoami.rule=Host(`whoami.example.com`)"
+      - "traefik.http.routers.whoami.rule=Host(`eservease.com`)"
       - "traefik.http.routers.whoami.tls=true"
       - "traefik.http.routers.whoami.tls.certresolver=myresolver"
       - "traefik.http.routers.whoami.entrypoints=web"
@@ -29,7 +29,7 @@ services:
 certificatesResolvers:
   myresolver:
     acme:
-      email: your-email@example.com
+      email: leamsiobligacion@gmail.com
       storage: acme.json
       httpChallenge:
         entryPoint: web
