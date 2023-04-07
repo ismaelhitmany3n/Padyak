@@ -29,6 +29,6 @@ services:
       - "traefik.http.middlewares.auth.basicauth.users=admin:$apr1$S8YtOBfZ$As/nJq3SkF4Hrrjv49LXx1"
 
 networks:
-  default:
+  web:
     external:
       name: nginx-proxy
