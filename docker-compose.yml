@@ -15,6 +15,8 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.db.rule=Host(`db.eservease.com`)"
       - "traefik.http.services.db.loadbalancer.server.port=3306"
+    networks:
+      - web
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -23,16 +25,16 @@ services:
       PMA_HOST: db
       PMA_PORT: 3306
       MYSQL_ROOT_PASSWORD: M@el3692
-    ports:
-      - 8080:80
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.phpmyadmin.rule=Host(`phpmyadmin.eservease.com`)"
       - "traefik.http.services.phpmyadmin.loadbalancer.server.port=80"
       - "traefik.http.routers.phpmyadmin.tls=true"
       - "traefik.http.routers.phpmyadmin.tls.certresolver=letsencrypt"
+    networks:
+      - web
 
 networks:
-  default:
+  web:
     external:
       name: nginx-proxy
