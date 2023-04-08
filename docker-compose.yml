@@ -1,4 +1,3 @@
-version: '3'
 
 services:
   db:
@@ -13,7 +12,7 @@ services:
       - ./mysql:/var/lib/mysql
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.db.rule=Host(`db.eservease.com`)"
+      - "traefik.http.routers.db.rule=Host(`db.eservease.com`)" 
       - "traefik.http.services.db.loadbalancer.server.port=3306"
     networks:
       - web
@@ -38,3 +37,4 @@ networks:
   web:
     external:
       name: nginx-proxy
+
